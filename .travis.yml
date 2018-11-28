@@ -23,7 +23,7 @@ deploy:
   provider: elasticbeanstalk
   region: "eu-central-1"
   app: "fib-cal-aws"
-  env: "e-ntgy75vvhb"
+  env: "FibCalAws-env"
   bucket_name: "elasticbeanstalk-eu-central-1-124917527601"
   bucket_path: "fib-cal-aws"
   on:
