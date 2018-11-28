@@ -3,7 +3,7 @@ service:
     - docker
 
 before_install:
-    - docker build -t jaqenhghar2402/client-test -f ./client/Dockerfile.dev ./client
+    - docker build -t jaqenhghar2402/fib-cal-aws-client-test -f ./client/Dockerfile.dev ./client
 
 script:
     - docker run jaqenhghar2402/fib-cal-aws-client-test npm test -- --coverage
