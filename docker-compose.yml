@@ -1,0 +1,45 @@
+version: '3'
+services: 
+  postgres:
+    image: 'postgres:latest'
+  redis:
+    image: 'redis:latest'
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - 3050:80
+  api:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./server
+    volumes:
+      - /usr/apps/fib-cal-aws/server/node_modules
+      - ./server:/usr/apps/fib-cal-aws/server/
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PGUSER=postgres
+      - PGPASSWORD=postgres_password 
+      - PGHOST=postgres
+      - PGPORT=5432 
+      - PGDATABASE=postgres
+  client:
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./client
+    volumes:
+      - /usr/apps/fib-cal-aws/client/node_modules
+      - ./client:/usr/apps/fib-cal-aws/client/
+  worker:
+    build: 
+      dockerfile: Dockerfile.dev
+      context: ./worker
+    volumes:
+      - /usr/apps/fib-cal-aws/worker/node_modules
+      - ./worker:/usr/apps/fib-cal-aws/client/
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
