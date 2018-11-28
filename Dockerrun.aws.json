@@ -5,22 +5,19 @@
             "name": "client",
             "image": "jaqenhghar2402/fib-cal-aws-client",
             "hostname": "client",
-            "essential": false,
-            "memory": 1024
+            "essential": false
         },
         {
             "name": "server",
             "image": "jaqenhghar2402/fib-cal-aws-server",
             "hostname": "api",
-            "essential": false,
-            "memory": 512
+            "essential": false
         },
         {
             "name": "worker",
             "image": "jaqenhghar2402/fib-cal-aws-worker",
             "hostname": "worker",
-            "essential": false,
-            "memory": 512
+            "essential": false
         },
         {
             "name": "nginx",
@@ -32,8 +29,7 @@
                     "containerPort": 80
                 }
             ],
-            "links": ["client", "server"],
-            "memory": 512
+            "links": ["client", "server"]
         }
     ]
 }
