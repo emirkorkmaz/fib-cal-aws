@@ -1,0 +1,20 @@
+sudo: required
+service:
+    - docker
+
+before_install:
+    - docker build -t jaqenhghar2402/client-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run jaqenhghar2402/fib-cal-aws-client-test npm test -- --coverage
+
+after_success:
+    - docker build -t jaqenhghar2402/fib-cal-aws-client ./client
+    - docker build -t jaqenhghar2402/fib-cal-aws-nginx ./nginx
+    - docker build -t jaqenhghar2402/fib-cal-aws-server ./server
+    - docker build -t jaqenhghar2402/fib-cal-aws-worker ./worker
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push jaqenhghar2402/fib-cal-aws-client
+    - docker push jaqenhghar2402/fib-cal-aws-nginx
+    - docker push jaqenhghar2402/fib-cal-aws-server
+    - docker push jaqenhghar2402/fib-cal-aws-worker
