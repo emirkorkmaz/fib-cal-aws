@@ -18,3 +18,16 @@ after_success:
     - docker push jaqenhghar2402/fib-cal-aws-nginx
     - docker push jaqenhghar2402/fib-cal-aws-server
     - docker push jaqenhghar2402/fib-cal-aws-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "fib-cal-aws"
+  env: "e-ntgy75vvhb"
+  bucket_name: "elasticbeanstalk-eu-central-1-124917527601"
+  bucket_path: "fib-cal-aws"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_API_KEY"
