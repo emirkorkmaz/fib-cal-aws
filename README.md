@@ -15,6 +15,6 @@ Modules are deployed to AWS EB (default VPC is used but new security group creat
 Travis CI executes tests, builds images and pushes to Docker Hub  
 Upon pushing images to docker HUB, invokes AWS deployment  
 
-https://travis-ci.org/emirkorkmaz/fib-cal-aws  
+https://travis-ci.org/emirkorkmaz/fib-cal-aws/builds  
 https://hub.docker.com/u/jaqenhghar2402/  
-http://fibcalaws-env.u9iq5ad268.eu-central-1.elasticbeanstalk.com/  
+http://fibcalaws-env.u9iq5ad268.eu-central-1.elasticbeanstalk.com/  (AWS su gibi yakıyor, macbur terminate :)) )
